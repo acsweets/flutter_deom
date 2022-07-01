@@ -3,45 +3,43 @@ import 'package:flutter/material.dart';
 import '../model/draggable_model.dart';
 
 class Draggabl extends StatefulWidget {
-
-  const Draggabl({Key ?key, }) : super(key: key);
+  const Draggabl({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<Draggabl> createState() => _DraggablState();
 }
 
-
 class _DraggablState extends State<Draggabl> {
-  late DraggableModel  model;
+  late DraggableModel model;
+
   @override
   void initState() {
     super.initState();
 
     model = DraggableModel();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:model.pagecolor,
+      backgroundColor: model.pagecolor,
       appBar: AppBar(
-
-        leading:Builder(
+        leading: Builder(
           builder: (BuildContext context) {
             return IconButton(
               icon: const Icon(Icons.map),
-              onPressed:(){
+              onPressed: () {
                 model.changeColor();
-                setState(() {
-
-                });
-
+                setState(() {});
               },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
           },
         ),
         backgroundColor: model.pagecolor,
-        elevation: 0.0,//标题下的阴影
+        elevation: 0.0, //标题下的阴影
         actions: [
           InkWell(
             child: Padding(
@@ -52,16 +50,11 @@ class _DraggablState extends State<Draggabl> {
               ),
             ),
             splashColor: Colors.white,
-            onTap: () {
-
-            },
+            onTap: () {},
           )
         ],
       ),
-      body: Container(
-
-      ),
+      body: Container(),
     );
   }
-
 }

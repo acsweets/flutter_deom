@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class DraggableModel extends ChangeNotifier {
-
   bool _disposed = false;
   Color pagecolor = Colors.black;
 
@@ -12,9 +11,9 @@ class DraggableModel extends ChangeNotifier {
       super.notifyListeners();
     }
   }
+
   @override
   void changeColor() {
-
     if (pagecolor != Colors.purple) {
       pagecolor = Colors.purple;
     } else {

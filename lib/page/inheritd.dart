@@ -5,21 +5,15 @@
 /// des:  InheritedWidget是Flutter中非常重要的一个功能型组件，它提供了一种数据在widget树中从上到下传递、共享的方式
 import 'package:flutter/material.dart';
 
-
-class ShareDataWidget extends InheritedWidget  {
-
-
+class ShareDataWidget extends InheritedWidget {
   final int data; //需要在子树中共享的数据，保存点击次数
 
-  ShareDataWidget( {required this.data,required Widget child})
-      :super(child:child);
-
+  ShareDataWidget({required this.data, required Widget child}) : super(child: child);
 
   // 子树中的widget通过该方法获取ShareDataWidget，从而获取共享数据
-  static ShareDataWidget? of(BuildContext context){
+  static ShareDataWidget? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<ShareDataWidget>();
   }
-
 
   //继承 InheritedWidget 实现的方法 返回值 决定当data发生变化时，是否通知子树中依赖data的Widget 更新数据
   @override
@@ -28,6 +22,7 @@ class ShareDataWidget extends InheritedWidget  {
     return oldWidget.data != data;
   }
 }
+
 class _TestWidget extends StatefulWidget {
   @override
   __TestWidgetState createState() => __TestWidgetState();
@@ -48,6 +43,7 @@ class __TestWidgetState extends State<_TestWidget> {
     print("Dependencies change");
   }
 }
+
 class InheritedWidgetTestRoute extends StatefulWidget {
   @override
   _InheritedWidgetTestRouteState createState() => _InheritedWidgetTestRouteState();
@@ -58,15 +54,16 @@ class _InheritedWidgetTestRouteState extends State<InheritedWidgetTestRoute> {
 
   @override
   Widget build(BuildContext context) {
-    return  Center(
-      child: ShareDataWidget( //使用ShareDataWidget
+    return Center(
+      child: ShareDataWidget(
+        //使用ShareDataWidget
         data: count,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(bottom: 20.0),
-              child: _TestWidget(),//子widget中依赖ShareDataWidget
+              child: _TestWidget(), //子widget中依赖ShareDataWidget
             ),
             ElevatedButton(
               child: Text("Increment"),

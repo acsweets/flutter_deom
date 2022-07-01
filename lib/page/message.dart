@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 
 class OverdueUrgeReplyPage extends StatefulWidget {
   const OverdueUrgeReplyPage({
-   Key? key,
+    Key? key,
   }) : super(key: key);
 
   _OverdueUrgeReplyPageState createState() => _OverdueUrgeReplyPageState();
 }
 
 class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
-
   late TextEditingController textEditingController;
   ScrollController _scrollController = ScrollController(); //listview的控制器
   late double contentMaxWidth;
@@ -20,10 +19,9 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
 
   @override
   void initState() {
-
     super.initState();
     textEditingController = TextEditingController();
-   // initData();
+    // initData();
   }
 
 /*  initData() async {
@@ -50,7 +48,6 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
 
   @override
   Widget build(BuildContext context) {
-
     contentMaxWidth = MediaQuery.of(context).size.width - 90;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -85,36 +82,27 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: <Widget>[
                   Expanded(
-                    child:Container(
+                    child: Container(
                       margin: EdgeInsets.fromLTRB(15, 10, 0, 10),
                       constraints: BoxConstraints(
                         maxHeight: 100.0,
                         minHeight: 50.0,
                       ),
-                      decoration: BoxDecoration(
-                          color:  Color(0xFFF5F6FF),
-                          borderRadius: BorderRadius.all(Radius.circular(2))
-                      ),
+                      decoration:
+                          BoxDecoration(color: Color(0xFFF5F6FF), borderRadius: BorderRadius.all(Radius.circular(2))),
                       child: TextField(
                         controller: textEditingController,
-                        cursorColor:Color(0xFF464EB5),
+                        cursorColor: Color(0xFF464EB5),
                         maxLines: null,
                         maxLength: 200,
                         decoration: InputDecoration(
                           counterText: '',
                           border: InputBorder.none,
-                          contentPadding: EdgeInsets.only(
-                              left: 16.0, right: 16.0, top: 10.0, bottom:10.0),
+                          contentPadding: EdgeInsets.only(left: 16.0, right: 16.0, top: 10.0, bottom: 10.0),
                           hintText: "回复",
-                          hintStyle: TextStyle(
-                              color: Color(0xFFADB3BA),
-                              fontSize:15
-                          ),
+                          hintStyle: TextStyle(color: Color(0xFFADB3BA), fontSize: 15),
                         ),
-                        style: TextStyle(
-                            color: Color(0xFF03073C),
-                            fontSize:15
-                        ),
+                        style: TextStyle(color: Color(0xFF03073C), fontSize: 15),
                       ),
                     ),
                   ),
@@ -132,10 +120,7 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                         ),
                       ),
                     ),
-                    onTap: () {
-
-
-                    },
+                    onTap: () {},
                   ),
                 ],
               ),
@@ -149,21 +134,18 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
   List list = []; //列表要展示的数据
 
   _renderList() {
-
     return GestureDetector(
       child: ListView.builder(
         reverse: true,
         shrinkWrap: true,
         padding: EdgeInsets.only(top: 27),
         itemBuilder: (context, index) {
-
           var item = list[index];
           return GestureDetector(
             child: item['employeeNo'] == employeeNo
                 ? _renderRowSendByMe(context, item)
                 : _renderRowSendByOthers(context, item),
-            onTap: () {
-            },
+            onTap: () {},
           );
         },
         itemCount: list.length,
@@ -171,21 +153,19 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
         controller: _scrollController,
       ),
       onTap: () {
-
         FocusScope.of(context).requestFocus(FocusNode());
       },
     );
   }
 
   Widget _renderRowSendByOthers(BuildContext context, item) {
-
     return Container(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: Column(
         children: <Widget>[
           Padding(
             child: Text(
-             'createdAt',
+              'createdAt',
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Color(0xFFA1A6BB),
@@ -195,7 +175,7 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
             padding: EdgeInsets.only(bottom: 20),
           ),
           Padding(
-            padding: EdgeInsets.only(left: 15,right: 45),
+            padding: EdgeInsets.only(left: 15, right: 45),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -203,9 +183,8 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                   alignment: Alignment.center,
                   width: 30,
                   height: 30,
-                  decoration: BoxDecoration(
-                      color: Color(0xFF464EB5),
-                      borderRadius: BorderRadius.all(Radius.circular(15))),
+                  decoration:
+                      BoxDecoration(color: Color(0xFF464EB5), borderRadius: BorderRadius.all(Radius.circular(15))),
                   child: Padding(
                     child: Text(
                       item['name'].toString().substring(0, 1),
@@ -236,25 +215,18 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                       Stack(
                         children: <Widget>[
                           Container(
-                            child: Image(
-                                width: 11,
-                                height: 20,
-                                image: AssetImage(
-                                    "static/images/chat_white_arrow.png")),
+                            child:
+                                Image(width: 11, height: 20, image: AssetImage("static/images/chat_white_arrow.png")),
                             margin: EdgeInsets.fromLTRB(2, 16, 0, 0),
                           ),
                           Container(
-                            decoration: BoxDecoration(
-                                boxShadow: [
-                                  BoxShadow(
-                                    offset: Offset(4.0, 7.0),
-                                    color: Color(0x04000000),
-                                    blurRadius: 10,
-                                  ),
-                                ],
-                                color: Colors.white,
-                                borderRadius:
-                                BorderRadius.all(Radius.circular(10))),
+                            decoration: BoxDecoration(boxShadow: [
+                              BoxShadow(
+                                offset: Offset(4.0, 7.0),
+                                color: Color(0x04000000),
+                                blurRadius: 10,
+                              ),
+                            ], color: Colors.white, borderRadius: BorderRadius.all(Radius.circular(10))),
                             margin: EdgeInsets.only(top: 8, left: 10),
                             padding: EdgeInsets.all(10),
                             child: Text(
@@ -279,7 +251,6 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
   }
 
   Widget _renderRowSendByMe(BuildContext context, item) {
-
     return Container(
       padding: EdgeInsets.fromLTRB(0, 0, 0, 20),
       child: Column(
@@ -304,9 +275,8 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                 alignment: Alignment.center,
                 width: 30,
                 height: 30,
-                decoration: BoxDecoration(
-                    color: Color(0xFF464EB5),
-                    borderRadius: BorderRadius.all(Radius.circular(15))),
+                decoration:
+                    BoxDecoration(color: Color(0xFF464EB5), borderRadius: BorderRadius.all(Radius.circular(15))),
                 child: Padding(
                   child: Text(
                     item['name'].toString().substring(0, 1),
@@ -337,11 +307,7 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                     alignment: Alignment.topRight,
                     children: <Widget>[
                       Container(
-                        child: Image(
-                            width: 11,
-                            height: 20,
-                            image: AssetImage(
-                                "static/images/chat_purple_arrow.png")),
+                        child: Image(width: 11, height: 20, image: AssetImage("static/images/chat_purple_arrow.png")),
                         margin: EdgeInsets.fromLTRB(0, 16, 2, 0),
                       ),
                       Row(
@@ -350,17 +316,13 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                           ConstrainedBox(
                             child: Container(
                               margin: EdgeInsets.only(top: 8, right: 10),
-                              decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      offset: Offset(4.0, 7.0),
-                                      color: Color(0x04000000),
-                                      blurRadius: 10,
-                                    ),
-                                  ],
-                                  color: Color(0xFF838CFF),
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
+                              decoration: BoxDecoration(boxShadow: [
+                                BoxShadow(
+                                  offset: Offset(4.0, 7.0),
+                                  color: Color(0x04000000),
+                                  blurRadius: 10,
+                                ),
+                              ], color: Color(0xFF838CFF), borderRadius: BorderRadius.all(Radius.circular(10))),
                               padding: EdgeInsets.all(10),
                               child: Text(
                                 item['reply'],
@@ -379,25 +341,22 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
                               margin: EdgeInsets.fromLTRB(0, 8, 8, 0),
                               child: item['status'] == SENDING_TYPE
                                   ? ConstrainedBox(
-                                constraints:
-                                BoxConstraints(maxWidth: 10, maxHeight: 10),
-                                child: Container(
-                                  width: 10,
-                                  height: 10,
-                                  child: CircularProgressIndicator(
-                                    strokeWidth: 2.0,
-                                    valueColor: new AlwaysStoppedAnimation<Color>(
-                                        Colors.grey),
-                                  ),
-                                ),
-                              )
+                                      constraints: BoxConstraints(maxWidth: 10, maxHeight: 10),
+                                      child: Container(
+                                        width: 10,
+                                        height: 10,
+                                        child: CircularProgressIndicator(
+                                          strokeWidth: 2.0,
+                                          valueColor: new AlwaysStoppedAnimation<Color>(Colors.grey),
+                                        ),
+                                      ),
+                                    )
                                   : item['status'] == FAILED_TYPE
-                                  ? Image(
-                                  width: 11,
-                                  height: 20,
-                                  image: AssetImage(
-                                      "static/images/network_error_icon.png"))
-                                  : Container()),
+                                      ? Image(
+                                          width: 11,
+                                          height: 20,
+                                          image: AssetImage("static/images/network_error_icon.png"))
+                                      : Container()),
                         ],
                       ),
                     ],
@@ -411,7 +370,7 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
     );
   }
 
-  final int maxValue = 1<<32;
+  final int maxValue = 1 << 32;
 
 /*
   sendTxt() async {
@@ -463,7 +422,7 @@ class _OverdueUrgeReplyPageState extends State<OverdueUrgeReplyPage> {
   }
 */
 
- /* final random = Random();
+  /* final random = Random();
 
   addMessage(content, tag) {
 
