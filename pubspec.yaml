@@ -27,6 +27,9 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  url_launcher: ^6.1.4
+  http:
+  html:
   flutter:
     sdk: flutter
 
@@ -51,6 +54,14 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  assets:
+    - assets/twitter.png
+    - assets/website.png
+  fonts:
+    - family: Cabin Sketch
+      fonts:
+        - asset: fonts/CabinSketch-Regular.ttf
+
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

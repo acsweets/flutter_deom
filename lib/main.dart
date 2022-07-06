@@ -5,8 +5,23 @@ import 'package:style/page/home_page.dart';
 import 'package:style/page/inheritd.dart';
 import 'package:style/page/message.dart';
 
+import 'animation/curvedanimation.dart';
+import 'job/JoblistScreen.dart';
+import 'job/care.dart';
+
 void main() {
-  runApp(const MyApp());
+/*  runApp(const MyApp());*/
+  runApp(
+      new AnimationApp()
+   /* MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: "Flutter Jobs",
+      initialRoute: '/',
+      routes: {
+        '/': (context) => CareScreen(),
+      },
+    ),*/
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -21,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  OverdueUrgeReplyPage(),
+      home:  Draggabl(),
     );
   }
 }
