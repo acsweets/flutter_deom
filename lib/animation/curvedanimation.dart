@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late AnimationController controller;
   late CurvedAnimation curveEaseIn, bounceIn, linear, decelerate;
   bool _animationFlag = true;
+  late Animation<double> animation;//自定义变化
 
   @override
   void initState() {
@@ -41,12 +42,16 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     linear =  CurvedAnimation(parent: controller, curve: Curves.linear);
     decelerate =
      CurvedAnimation(parent: controller, curve: Curves.decelerate);
+    animation = Tween(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(controller);
   }
 
   @override
   Widget build(BuildContext context) {
     buildItemWidget(
-        CurvedAnimation animation, MaterialColor color, String itemText) {
+         animation, MaterialColor color, String itemText) {
       return  Column(
         children: <Widget>[
           FadeTransition(
@@ -83,7 +88,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           padding: const EdgeInsets.all(12.0),
           children: <Widget>[
             buildItemWidget( CurvedAnimation(parent: controller, curve: Curves.ease), Colors.blue, 'Curves.easeIn'),
-
+            buildItemWidget( animation, Colors.red, 'Curves.easeIn'),
    /*  buildItemWidget(curveEaseIn, Colors.blue, 'Curves.easeIn'),//curveEase 渐隐，渐显
    buildItemWidget(bounceIn, Colors.amber, 'Curves.bounceIn'),//闪烁，
             buildItemWidget(linear, Colors.red, 'Curves.linear'),//线性隐藏
