@@ -32,7 +32,6 @@ class _DraggablState extends State<Draggabl> {
               icon: const Icon(Icons.map),
               onPressed: () {
                 model.changeColor();
-              /*  setState(() {});*/
               },
               tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
             );
