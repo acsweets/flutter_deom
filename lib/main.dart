@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:style/page/draggable.dart';
-import 'animation/curvedanimation.dart';
-
+import 'package:style/page/calculator_page.dart';
+import 'package:style/page/home_page.dart';
+import 'package:style/page/providerExample.dart';
+import 'package:provider/provider.dart';
+import 'model/user_model.dart';
 
 void main() {
   runApp(
@@ -20,8 +22,15 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  Draggabl(),
+      home:  CalculatorPage(),
     );
+   /*   Provider<UserModel>(
+        create: (_) => UserModel(),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: ProviderExample(),
+        ),
+      );*/
   }
 }
 
