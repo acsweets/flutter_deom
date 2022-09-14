@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:style/calss/add_class.dart';
-import 'package:style/calss/operstion.dart';
 
-import '../calss/operation_factory.dart';
+import '../esay_factory/operation_factory.dart';
+import '../esay_factory/operstion.dart';
 
 class CalculatorPage extends StatefulWidget {
 
