@@ -1,5 +1,6 @@
 ///超市页面
 import 'package:flutter/material.dart';
+import 'package:style/Strategy/cash_context.dart';
 import 'package:style/Strategy/cash_factory.dart';
 import 'package:style/Strategy/cash_super.dart';
 import 'package:style/utils/enmu.dart';
@@ -24,7 +25,7 @@ class _SupermarketState extends State<Supermarket> {
         children: [
           GestureDetector(
             onTap: () {
-              payment(ChargeType.rebate, 600.0);
+              newPayment(ChargeType.rebate, 600.0);
             },
             child: Container(height: 200, width: 200, color: Colors.red, child: Text('点我')),
           )
@@ -40,4 +41,10 @@ void payment(ChargeType type, double money) {
   CashSuper? cashSuper = CashFactory.createCashAccept(type);
   totalPrice = cashSuper?.acceptCash(money);
   print('$totalPrice');
+}
+
+void newPayment(ChargeType type, double money) {
+  CashContext cc = CashContext(type: type);//实例化
+  cc.cs.acceptCash(money);
+  print('${cc.cs.acceptCash(money)}');
 }
