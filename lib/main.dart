@@ -3,6 +3,7 @@ import 'package:style/page/calculator_page.dart';
 import 'package:style/page/home_page.dart';
 import 'package:style/page/providerExample.dart';
 import 'package:provider/provider.dart';
+import 'package:style/page/supermarket_page.dart';
 import 'model/user_model.dart';
 
 void main() {
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  CalculatorPage(),
+      home:  Supermarket(),
     );
    /*   Provider<UserModel>(
         create: (_) => UserModel(),
