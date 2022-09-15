@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:style/page/calculator_page.dart';
+import 'package:style/page/decorate_page.dart';
 import 'package:style/page/home_page.dart';
 import 'package:style/page/providerExample.dart';
 import 'package:provider/provider.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  Supermarket(),
+      home:  DecoratePage(),
     );
    /*   Provider<UserModel>(
         create: (_) => UserModel(),
