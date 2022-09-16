@@ -1,8 +1,8 @@
 class Person {
-  String? _name;
+ late String _name;
 
-  Person(String name) {
-    _name = name;
+  Person( String name){
+    _name=name;
   }
 
   void show() {

@@ -2,8 +2,18 @@
 
 class Finery extends Person{
 
-  Finery(String name) : super(name);
+  Person ? component;
 
 
+  void decorate(Person component ) {
+    this.component = component;
+  }
+
+@override
+  void show() {
+    if( component!=null){
+      component?.show();
+    }
+  }
 
 }
