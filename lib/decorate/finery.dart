@@ -1,5 +1,6 @@
  import 'package:style/decorate/person.dart';
 
+/*
 class Finery extends Person{
 
   Person ? component;
@@ -16,4 +17,4 @@ class Finery extends Person{
     }
   }
 
-}
+}*/
