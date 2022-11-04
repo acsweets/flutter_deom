@@ -52,8 +52,3 @@ void newPayment(ChargeType type, double money) {
   print('${cc.cs.acceptCash(money)}');
 }
 
-void showtime(){
-   Person ac =  Person('小明');
-   Finery ts = TShirt();
-    ts.show();
-}
