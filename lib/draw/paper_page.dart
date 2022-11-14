@@ -757,8 +757,76 @@ class PaperPainter extends CustomPainter {
 
 
   }
+  ///二、文字绘制:
+  // 主要的绘制方式是通过 drawParagraph 或 TextPaint。
+
+  ///drawParagraph绘制文字
+  /// 通过 ParagraphBuilder 构造基本样式 pushStyle 和添加文字addText。
+  ///builder.build() 可以创建 Paragraph 对象，之后必须对其排布layout 限制区域。
+  /// 下面蓝色区域是绘制的辅助， 依次是左对齐、居中、右对齐
+  ///Paragraph
+  // void drawParagraph(Paragraph paragraph, Offset offset)
+  // Paragraph是Flutter中用于文字绘制的类，Flutter中所有的文字，最后都是通过它来绘制的，连输入框也都是通过它来实现的，由此可见它的强大之处。
+  //
+  // Paragraph是一个没有构造函数的类，它只是提供一个宿主，用于最后的渲染。我们真正需要处理的则是ParagraphBuilder这个类。
+  //
+  // ParagraphBuilder类接收一个参数，是一个ParagraphStyle类，用于设置字体基本样式，例如字体方向、对齐方向、字体粗细等，下面我们分几个步骤来绘制文字
+  //
+  // 第一步，生成ParagraphStyle类
+
+  //第二步，根据ParagraphStyle生成ParagraphBuilder
+  //final paragraphBuilder = ui.ParagraphBuilder(paragraphStyle);
+ // 第三步，添加文字。ParagraphBuilder类有个addText方法专门用于接收文字
+ // paragraphBuilder.addText('JSShou学习Canvas');
+ // 第四步，通过build取到Paragraph类
+ // var paragraph = paragraphBuilder.build();
+ // 第五步，根据宽高进行布局(layout)
+ // paragraph.layout(ui.ParagraphConstraints(width: 300));
+ // 第六步，绘制(paint)
+  //canvas.drawParagraph(paragraph, Offset(50, 50));
+  void drawTextWithParagraph(Canvas canvas,TextAlign textAlign ,Paint paint) {
+    var builder = ui.ParagraphBuilder(ui.ParagraphStyle(
+      textAlign: textAlign,
+      fontSize: 40,
+      textDirection: TextDirection.ltr,
+      maxLines: 1,
+    ));
+    builder.pushStyle(
+      ui.TextStyle(
+          color: Colors.black87, textBaseline: ui.TextBaseline.alphabetic),
+    );
+    builder.addText("Flutter Unit");
+    ui.Paragraph paragraph = builder.build();
+    paragraph.layout( ui.ParagraphConstraints(width: 300));
+    canvas.drawParagraph(paragraph, Offset(0, 0));
+    canvas.drawRect(Rect.fromLTRB(0, 0, 300, 40 ),
+        paint..color = Colors.blue.withAlpha(55));
+  }
 
 
+  ///2. TextPainter 绘制文字
+  // TextPainter的绘制基本上就是对drawParagraph的封装，
+  // 提供了更多的方法，使用起来简洁一些。所以一般来说都是使用 TextPainter
+  // 进行文字绘制。绘制先设置 TextPainter，然后执行 layout() 方法进行布局，
+  // 其中可以传入布局区域的最大和最小宽度。通过 paint 方法进行绘制。
+  void drawTextPaintShowSize(Canvas canvas,Paint paint) {
+    TextPainter textPainter = TextPainter(
+        text: TextSpan(
+            text: 'Flutter Unit',
+            style: TextStyle(
+                fontSize: 40,
+                color: Colors.black)),
+        textAlign: TextAlign.center,
+        textDirection: TextDirection.ltr);
+    textPainter.layout(); // 进行布局
+    Size size = textPainter.size; // 尺寸必须在布局后获取
+    textPainter.paint(canvas, Offset(-size.width / 2, -size.height / 2));
+
+    canvas.drawRect(
+        Rect.fromLTRB(0, 0, size.width, size.height)
+            .translate(-size.width / 2, -size.height / 2),
+        paint..color = Colors.blue.withAlpha(33));
+  }
 
   void drawPaper(
     Canvas canvas,
@@ -773,7 +841,8 @@ class PaperPainter extends CustomPainter {
 
     //  drawImageNine(canvas, paint); //可缩放的矩形域绘制
    // drawAtlas(canvas, paint);//在画布上绘制一张图片上的很多部分，
-    drawRawAtlas(canvas, paint);//绘制原始图集:drawRawAtlas
+    //drawRawAtlas(canvas, paint);//绘制原始图集:drawRawAtlas
+    drawTextWithParagraph(canvas,TextAlign.center,paint);
   }
 
   @override
