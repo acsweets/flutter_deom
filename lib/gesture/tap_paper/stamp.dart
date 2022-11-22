@@ -75,7 +75,8 @@ class StampData extends ChangeNotifier {
   }
 
   // 校验胜负，返回游戏状态
-  GameState checkWin(double length){
+  GameState
+  checkWin(double length){
     bool redWin = _checkWinByColor(length,Colors.red);
     if(redWin) return GameState.redWin;
 
@@ -99,7 +100,9 @@ class StampData extends ChangeNotifier {
 // 核心方法，校验 [points] 坐标，是否满足
 // 四方向上 [max] 个连珠
   bool _checkWinInline(List<Point<int>> points, int max) {
+    //长度不够直接返回
     if (points.length < max) return false;
+
     for (int i = 0; i < points.length; i++) {
       int x = points[i].x;
       int y = points[i].y;

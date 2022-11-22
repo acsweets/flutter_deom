@@ -15,3 +15,5 @@ enum CheckModel {
   leftDiagonal, // 左斜判断
   rightDiagonal // 右斜判断
 }
+///画笔的三种状态
+enum PaintState { doing, done, hide }
