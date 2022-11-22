@@ -1,7 +1,6 @@
 
 import 'package:flutter/material.dart';
-
-import 'home_page.dart';
+import 'package:style/style_animation/text_color_anim_page.dart';
 
 void main() {
   runApp(
