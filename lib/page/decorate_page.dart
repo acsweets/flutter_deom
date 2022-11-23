@@ -26,6 +26,7 @@ class _DecoratePageState extends State<DecoratePage> {
         children: [
           GestureDetector(
             onTap: () {
+
               decorate();
             },
             child: Container(height: 200, width: 200, color: Colors.red, child: Text('点我')),
