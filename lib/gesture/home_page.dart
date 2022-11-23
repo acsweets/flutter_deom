@@ -55,6 +55,28 @@ class HomePage extends StatelessWidget {
                   )),
                 ),
               )),
+          TextButton(
+              onPressed: () {
+                //跳转页面
+                Navigator.of(context).push(MaterialPageRoute(
+                  //没有传值
+                    builder: (context) => TapPage()));
+              },
+              child: MeasureSize(
+                onChange: (size) {
+                  print('$size');
+                },
+                child: Container(
+                  height: 100,
+                  width: 100,
+                  color: Colors.yellow,
+                  child: Center(
+                      child: Text(
+                        '画个圆',
+                        style: TextStyle(color: Colors.orange),
+                      )),
+                ),
+              )),
         ],
       ),
     );
