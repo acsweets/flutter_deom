@@ -1,6 +1,8 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:style/draw/page/draw_animation_pieman.dart';
+import 'package:style/draw/page/draw_pieman_page.dart';
 
 class AxisPage extends StatefulWidget {
   const AxisPage({Key? key}) : super(key: key);
@@ -16,17 +18,43 @@ class _AxisPageState extends State<AxisPage> {
       appBar: AppBar(
         title: Text('111'),
       ),
-      body: Column(
-        children: [
-          Container(
-            height: 200,
-            width: 200,
-            color: Colors.white,
-            child: CustomPaint(
-              painter: DrawAxis(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextButton(
+              child: Text("吃豆人"),
+              onPressed: () {
+                //导航到新路由
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return DrawPage();
+                  }),
+                );
+              },
             ),
-          ),
-        ],
+            TextButton(
+              child: Text("吃豆人带动画"),
+              onPressed: () {
+                //导航到新路由
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return DrawAnimationPage();
+                  }),
+                );
+              },
+            ),
+            Container(
+              height: 200,
+              width: 200,
+              color: Colors.white,
+              child: CustomPaint(
+                painter: DrawAxis(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
     ;
@@ -48,8 +76,8 @@ class DrawAxis extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-   // canvas.translate(size.width / 2, size.height / 2);
- //   _drawGrid(canvas, size);
+    // canvas.translate(size.width / 2, size.height / 2);
+    //   _drawGrid(canvas, size);
     drawGrid(canvas, size);
     // TODO: implement paint
   }
@@ -90,32 +118,38 @@ class DrawAxis extends CustomPainter {
 
   void drawGrid(Canvas canvas, Size size) {
     canvas.save();
-    for (int i = 0; i < (size.height/step) +1; i++) {
-      canvas.drawLine(Offset(0, 0), Offset(size.width ,0), _gridPint);
-     canvas.translate(0, step);
+    for (int i = 0; i < (size.height / step) + 1; i++) {
+      canvas.drawLine(Offset(0, 0), Offset(size.width, 0), _gridPint);
+      canvas.translate(0, step);
     }
     canvas.restore();
 
-
     canvas.save();
-    for (int i = 0; i < (size.width/step) +1; i++) {
-      canvas.drawLine(Offset(0, 0), Offset(0 ,size.height), _gridPint);
+    for (int i = 0; i < (size.width / step) + 1; i++) {
+      canvas.drawLine(Offset(0, 0), Offset(0, size.height), _gridPint);
       canvas.translate(step, 0);
     }
     canvas.restore();
 
     canvas.translate(size.width / 2, size.height / 2);
-    canvas.drawCircle(Offset.zero, step*2,_gridPint..color= Colors.green..strokeWidth = 2 );
+    canvas.drawCircle(
+        Offset.zero,
+        step * 2,
+        _gridPint
+          ..color = Colors.green
+          ..strokeWidth = 2);
 
     canvas.save();
-    for (int i = 0; i <24; i++) {
-
-      canvas.drawLine(Offset(step*2, 0), Offset(step*3 ,0), _gridPint..color = Colors.blue..strokeWidth = 2);
+    for (int i = 0; i < 24; i++) {
+      canvas.drawLine(
+          Offset(step * 2, 0),
+          Offset(step * 3, 0),
+          _gridPint
+            ..color = Colors.blue
+            ..strokeWidth = 2);
       canvas.rotate(2 * pi / 24);
     }
     canvas.restore();
-
-
   }
 
   @override
