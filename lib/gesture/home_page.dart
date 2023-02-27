@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:style/gesture/pan_painter/white_paper.dart';
 import 'package:style/gesture/size.dart';
 import 'package:style/gesture/tap_paper/tap_page.dart';
 
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text('主页'),
       ),
-      body: Column(
+      body:/* Column(
         children: [
           TextButton(
               onPressed: () {
@@ -78,7 +79,8 @@ class HomePage extends StatelessWidget {
                 ),
               )),
         ],
-      ),
+      ),*/
+      const WhitePaper(),
     );
   }
 }
