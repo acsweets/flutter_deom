@@ -46,8 +46,8 @@ class _ChangeNotifierTestState extends State<ChangeNotifierTest> {
         ),
         body: Center(
           child: Container(
-            child: RaisedButton(
-                onPressed: () {
+            child: GestureDetector(
+                onTap: () {
                   _counter.addCount();
                 },
                 child: Row(

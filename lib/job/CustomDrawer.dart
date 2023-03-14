@@ -19,7 +19,6 @@ class CustomDrawerState extends State<CustomDrawer>
   @override
   Widget build(BuildContext context) {
     return Stack(
-      overflow: Overflow.visible,
       children: <Widget>[
         ClipPath(
           clipper: CustomDrawerClipper(),
@@ -120,8 +119,8 @@ class CustomDrawerState extends State<CustomDrawer>
   }
 
   buildCard(String title, IconData icon, VoidCallback callback) {
-    return FlatButton(
-      onPressed:callback,
+    return GestureDetector(
+      onTap:callback,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[

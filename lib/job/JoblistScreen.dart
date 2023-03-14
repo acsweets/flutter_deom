@@ -88,12 +88,12 @@ class _JobListScreenState extends State<JobListScreen> {
               padding: const EdgeInsets.all(8.0),
               child: Row(
                 children: <Widget>[
-                  FlatButton(
+                  GestureDetector(
                     child: Text(
                       "Close",
                       style: TextStyle(color: Colors.blue),
                     ),
-                    onPressed: () {
+                    onTap: () {
                       Navigator.pop(context);
                     },
                   ),

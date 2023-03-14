@@ -42,6 +42,9 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   provider: ^6.0.3
+  build_runner: ^2.0.0
+  fair_compiler: 1.6.0
+  fair: ^3.0.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -58,17 +61,19 @@ flutter:
   assets:
     - assets/twitter.png
     - assets/website.png
+    - assets/bundle/
   fonts:
     - family: Cabin Sketch
       fonts:
         - asset: fonts/CabinSketch-Regular.ttf
-
-
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+dependency_overrides:
+  collection: 1.16.0
+  fair_version:
+    path: ../fair/flutter_version/flutter_3_3_0
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

@@ -22,7 +22,7 @@ Future<Company> getDomain(String name) async {
   final response = await http.get(Uri(path: 'https://company.clearbit.com/v1/domains/find?name=$name',),
 
     headers: {
-      HttpHeaders.AUTHORIZATION: "Bearer sk_fca4ae30e175bae925b6eb37d567740c",
+      HttpHeaders.authorizationHeader: "Bearer sk_fca4ae30e175bae925b6eb37d567740c",
     },
   );
   final responseJson = json.decode(response.body);
@@ -154,13 +154,16 @@ class _DetailState extends State<Detail> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 10.0),
-                        child: RaisedButton(
-                          color: Colors.blueAccent,
-                          child: Text(
-                            "Apply",
-                            style: TextStyle(color: Colors.white),
+                        child: GestureDetector(
+
+                          child: Container(
+                            color: Colors.blue,
+                            child: Text(
+                              "Apply",
+                              style: TextStyle(color: Colors.white),
+                            ),
                           ),
-                          onPressed: () {
+                          onTap: () {
                             launchURL(widget.job.url);
                           },
                         ),
