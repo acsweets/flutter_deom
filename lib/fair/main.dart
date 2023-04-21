@@ -1,3 +1,4 @@
+/*
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
       //     })
 
       home: FairWidget(
-        path: 'assets/bundle/lib_fair_detail.fair.json',
+        path: 'assets/bundle/lib_fair_component_grid_gridview_template.fair.json',
         data: {
           'fairProps': jsonEncode({
             'auth': 'Internal Team',
@@ -55,4 +56,4 @@ class MyApp extends StatelessWidget {
     );
 
   }
-}
+}*/

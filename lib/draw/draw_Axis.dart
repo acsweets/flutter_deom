@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:style/draw/page/draw_animation_pieman.dart';
 import 'package:style/draw/page/draw_pieman_page.dart';
+import 'package:style/draw/page/pie_draw_page.dart';
 
 class AxisPage extends StatefulWidget {
   const AxisPage({Key? key}) : super(key: key);
@@ -41,6 +42,18 @@ class _AxisPageState extends State<AxisPage> {
                   context,
                   MaterialPageRoute(builder: (context) {
                     return DrawAnimationPage();
+                  }),
+                );
+              },
+            ),
+            TextButton(
+              child: Text("饼图"),
+              onPressed: () {
+                //导航到新路由
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return PieDrawPage();
                   }),
                 );
               },
