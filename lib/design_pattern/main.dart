@@ -3,6 +3,7 @@ import 'package:style/design_pattern/liskov_substitution_principle/user_info.dar
 import 'package:style/design_pattern/single_responsibility_principle/abstrac_gun.dart';
 
 import 'dependence_inversion_principle,/depend.dart';
+import 'interface_segregation_principle/interface_segregation.dart';
 
 void main() {
   runApp(MyApp());
@@ -74,15 +75,29 @@ class HomePage extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    ICar bmw =  BMW();
+                    ICar bmw = BMW();
                     Driver zhangSan = Driver(car: bmw);
                     zhangSan.drive();
                   },
                   child: Text('司机开车'),
-
                 ),
               ],
             ),
+            Row(
+              children: [
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    IGreatTemperamentGirl yanYan = PettyGirl(name: "艳艳");
+                    AbstractSearcher searcher = Searcher.withGreatTemperamentGirl(yanYan);
+                    searcher.show();
+                  },
+                  child: Text('寻找meimie'),
+                ),
+              ],
+            )
           ],
         ));
   }
