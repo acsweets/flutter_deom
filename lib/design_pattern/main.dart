@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:style/design_pattern/liskov_substitution_principle/user_info.dart';
 import 'package:style/design_pattern/single_responsibility_principle/abstrac_gun.dart';
 
+import 'dependence_inversion_principle,/depend.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -66,6 +68,18 @@ class HomePage extends StatelessWidget {
                     print(toyGun.color);
                   },
                   child: Text('玩具'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    ICar bmw =  BMW();
+                    Driver zhangSan = Driver(car: bmw);
+                    zhangSan.drive();
+                  },
+                  child: Text('司机开车'),
+
                 ),
               ],
             ),
