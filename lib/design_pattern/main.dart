@@ -4,6 +4,7 @@ import 'package:style/design_pattern/single_responsibility_principle/abstrac_gun
 
 import 'dependence_inversion_principle,/depend.dart';
 import 'interface_segregation_principle/interface_segregation.dart';
+import 'least_knowledge_principle/least_knowledge.dart';
 
 void main() {
   runApp(MyApp());
@@ -95,6 +96,16 @@ class HomePage extends StatelessWidget {
                     searcher.show();
                   },
                   child: Text('寻找meimie'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    InstallSoftware invoker = InstallSoftware();
+                    invoker.installWizard(Wizard());
+                  },
+                  child: Text('安装软件'),
                 ),
               ],
             )
