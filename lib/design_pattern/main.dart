@@ -3,6 +3,7 @@ import 'package:style/design_pattern/liskov_substitution_principle/user_info.dar
 import 'package:style/design_pattern/single_responsibility_principle/abstrac_gun.dart';
 
 import 'dependence_inversion_principle,/depend.dart';
+import 'factory_method_pattern/factory_method.dart';
 import 'interface_segregation_principle/interface_segregation.dart';
 import 'least_knowledge_principle/least_knowledge.dart';
 
@@ -106,6 +107,33 @@ class HomePage extends StatelessWidget {
                     invoker.installWizard(Wizard());
                   },
                   child: Text('安装软件'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    AbstractHumanFactory yinYangLu = HumanFactory();
+                    //第一次造人，火候不足，失败
+                    print("--造出的第一批人是白色人种--");
+                    // Human whiteHuman = yinYangLu.createHuman(WhiteHuman)!;
+                    Human whiteHuman = yinYangLu.createHuman(PeopleType.white)!;
+                    whiteHuman.getColor();
+                    whiteHuman.talk();
+                    //第二次造人，火候过足，失败
+                    print("\n--造出的第二批人是黑色人种--");
+                    //  Human blackHuman = yinYangLu.createHuman(BlackHuman)!;
+                    Human blackHuman = yinYangLu.createHuman(PeopleType.black)!;
+                    blackHuman.getColor();
+                    blackHuman.talk();
+                    //第三次造人，火候正好，成功
+                    print("\n--造出的第三批人是黄色人种--");
+                    // Human yellowHuman = yinYangLu.createHuman(YellowHuman)!;
+                    Human yellowHuman = yinYangLu.createHuman(PeopleType.yellow)!;
+                    yellowHuman.getColor();
+                    yellowHuman.talk();
+                  },
+                  child: Text('女娲造人'),
                 ),
               ],
             )
