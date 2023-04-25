@@ -75,7 +75,7 @@ class BookStore {
 /// 于是书店新增 加了计算机书籍，它不仅包含书籍名称、作者、价格等信息，还有一个独特的属性：
 /// 面向的 是什么领域，也就是它的范围，比如是和编程语言相关的，还是和数据库相关的，等等
 ///
- 
+
 //假如书店打折只需要继承抽象书类  完成价格的重写
 class OffNovelBook extends NovelBook {
   OffNovelBook({required String name, required int price, required String author})

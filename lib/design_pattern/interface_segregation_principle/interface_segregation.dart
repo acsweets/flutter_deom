@@ -1,3 +1,4 @@
+///接口隔离原则
 ///● 实例接口（Object Interface），在Java中声明一个类，然后用new关键字产生一个实例，
 ///它是对一个类型的事物的描述，这是一种接口。比如你定义Person这个类，
 ///然后使用 Person zhangSan=new Person()产生了一个实例，这个实例要遵从的标准就是Person这个类，
