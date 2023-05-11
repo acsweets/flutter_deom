@@ -107,7 +107,7 @@ abstract class HummerModel {
     stop();
   }
 
-  
+
   // 是否需要鸣笛，默认需要
   bool isAlarm() => true;
 }
