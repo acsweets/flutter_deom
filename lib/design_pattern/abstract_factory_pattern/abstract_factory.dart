@@ -168,6 +168,6 @@ class MaleFactory implements HumanFactory {
   maleYellowHuman.talk();
   maleYellowHuman.getSex();
 
-  
+
   }
 }
