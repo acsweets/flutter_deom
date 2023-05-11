@@ -35,105 +35,252 @@
 ///
 
 ///通过外部来设置顺序
-abstract class CarModel {
-  // 这个参数是一个用来记录汽车启动顺序的List
-  List<String> sequence = [];
+// abstract class CarModel {
+//   // 这个参数是一个用来记录汽车启动顺序的List
+//   List<String> sequence = [];
+//
+//   // 启动，子类必须实现
+//   void start();
+//
+//   // 停止，子类必须实现
+//   void stop();
+//
+//   // 鸣笛，子类必须实现
+//   void alarm();
+//
+//   // 引擎轰鸣，子类必须实现
+//   void engineBoom();
+//
+//   // 运行，模板方法
+//   void run() {
+//     // 遍历启动顺序List，执行相应的操作
+//     for (var actionName in sequence) {
+//       if (actionName.toLowerCase() == 'start') {
+//         start();  // 启动
+//       } else if (actionName.toLowerCase() == 'stop') {
+//         stop();  // 停止
+//       } else if (actionName.toLowerCase() == 'alarm') {
+//         alarm();  // 鸣笛
+//       } else if (actionName.toLowerCase() == 'engine boom') {
+//         engineBoom();  // 引擎轰鸣
+//       }
+//     }
+//   }
+//
+//   // 设置启动顺序
+//   void setSequence(List<String> sequence) {
+//     this.sequence = sequence;
+//   }
+// }
+//
+// class BenzModel extends CarModel {
+//
+//   @override
+//   void alarm() {
+//     print('这辆奔驰车的警报是这样的...');
+//   }  @override
+//   void engineBoom() {
+//     print('这辆奔驰车的引擎声是这样的...');
+//   }
+//
+//   @override
+//   void start() {
+//     print('这辆奔驰车的启动方式是这样的...');
+//   }
+//
+//   @override
+//   void stop() {
+//     print('这辆奔驰车的停止方式是这样的...');
+//   }
+//
+// }
+// class BMWModel extends CarModel {
+//
+//   @override
+//   void alarm() {
+//     print("警报器的声音是这样的...");
+//   }
+//
+//   @override
+//   void engineBoom() {
+//     print("引擎发动声是这样的...");
+//   }
+//
+//   @override
+//   void start() {
+//     print("车子启动是这样的...");
+//   }
+//
+//   @override
+//   void stop() {
+//     print("车子停止是这样的...");
+//   }
+//
+// }
+//
+// class Began {
+//   static  void begin() {
+//     /*
+//    * 客户需要奔驰车，我要制造一个奔驰模型，
+//    * 而且这个顺序不能乱，必须按照这个顺序制造出来，
+//    * 这个顺序由客户决定，我就按照客户的要求制造就好了
+//    */
+//     BenzModel benz =  BenzModel();
+//     // 存放run的顺序
+//     List<String> sequence = [];
+//     sequence.add("engine boom"); // 客户要求，run的时候先发动引擎
+//     sequence.add("start"); // 启动起来
+//     sequence.add("stop"); // 开了一段就停下来
+//     // 把顺序给奔驰车
+//     benz.setSequence(sequence);
+//     benz.run();
+//   }
+//
+// }
 
-  // 启动，子类必须实现
+abstract class CarBuilder {
+  // 定义一个抽象方法，设置车辆组装顺序
+  void setSequence(List<String> sequence);
+
+  // 定义一个抽象方法，获取组装完成的车辆模型
+  CarModel getCarModel();
+}
+
+abstract class CarModel {
+  //这个参数是执行顺序
+  List<String> sequence = []; //抽象方法，启动
   void start();
 
-  // 停止，子类必须实现
+  //抽象方法，停止
   void stop();
 
-  // 鸣笛，子类必须实现
+  //抽象方法，鸣笛
   void alarm();
 
-  // 引擎轰鸣，子类必须实现
+  //抽象方法，引擎轰鸣
   void engineBoom();
 
-  // 运行，模板方法
+  //最终的方法，将执行顺序传递过来，并按照顺序执行
   void run() {
-    // 遍历启动顺序List，执行相应的操作
-    for (var actionName in sequence) {
-      if (actionName.toLowerCase() == 'start') {
-        start();  // 启动
-      } else if (actionName.toLowerCase() == 'stop') {
-        stop();  // 停止
-      } else if (actionName.toLowerCase() == 'alarm') {
-        alarm();  // 鸣笛
-      } else if (actionName.toLowerCase() == 'engine boom') {
-        engineBoom();  // 引擎轰鸣
+    for (var i = 0; i < sequence.length; i++) {
+      var actionName = sequence[i];
+      if (actionName.toLowerCase() == "start") {
+        start();
+      } else if (actionName.toLowerCase() == "stop") {
+        stop();
+      } else if (actionName.toLowerCase() == "alarm") {
+        alarm();
+      } else if (actionName.toLowerCase() == "engine boom") {
+        engineBoom();
       }
     }
   }
 
-  // 设置启动顺序
+  //设置执行顺序
   void setSequence(List<String> sequence) {
     this.sequence = sequence;
   }
 }
 
 class BenzModel extends CarModel {
-
   @override
   void alarm() {
-    print('这辆奔驰车的警报是这样的...');
-  }  @override
+    print("这辆奔驰的警报声音是这样的...");
+  }
+
+  @override
   void engineBoom() {
-    print('这辆奔驰车的引擎声是这样的...');
+    print("这辆奔驰的引擎声音是这样的...");
   }
 
   @override
   void start() {
-    print('这辆奔驰车的启动方式是这样的...');
+    print("这辆奔驰启动起来是这样的...");
   }
 
   @override
   void stop() {
-    print('这辆奔驰车的停止方式是这样的...');
+    print("这辆奔驰停车了...");
+  }
+}
+
+class BenzBuilder extends CarBuilder {
+  BenzModel benz = BenzModel();
+
+  @override
+  CarModel getCarModel() {
+    return benz;
   }
 
+  @override
+  void setSequence(List<String> sequence) {
+    benz.setSequence(sequence);
+  }
 }
 class BMWModel extends CarModel {
-
   @override
   void alarm() {
-    print("警报器的声音是这样的...");
+    print("这辆宝马的警报声音是这样的...");
   }
 
   @override
   void engineBoom() {
-    print("引擎发动声是这样的...");
+    print("这辆宝马的引擎声音是这样的...");
   }
 
   @override
   void start() {
-    print("车子启动是这样的...");
+    print("这辆宝马启动起来是这样的...");
   }
 
   @override
   void stop() {
-    print("车子停止是这样的...");
+    print("这辆宝马停车了...");
   }
-
 }
 
-class Began {
-  static  void begin() {
-    /*
-   * 客户需要奔驰车，我要制造一个奔驰模型，
-   * 而且这个顺序不能乱，必须按照这个顺序制造出来，
-   * 这个顺序由客户决定，我就按照客户的要求制造就好了
-   */
-    BenzModel benz =  BenzModel();
-    // 存放run的顺序
-    List<String> sequence = [];
-    sequence.add("engine boom"); // 客户要求，run的时候先发动引擎
-    sequence.add("start"); // 启动起来
-    sequence.add("stop"); // 开了一段就停下来
-    // 把顺序给奔驰车
-    benz.setSequence(sequence);
-    benz.run();
+class BMWBuilder extends CarBuilder {
+  BMWModel bmw = BMWModel();
+
+  @override
+  CarModel getCarModel() {
+    return bmw;
   }
 
+  @override
+  void setSequence(List<String> sequence) {
+    bmw.setSequence(sequence);
+  }
+}
+class Director {
+  List<String> sequence = [];
+  BenzBuilder benzBuilder = BenzBuilder();
+  BMWBuilder bmwBuilder = BMWBuilder();
+  BenzModel getABenzModel() {
+    sequence.clear();
+    sequence.addAll(["start", "stop"]);
+    benzBuilder.setSequence(sequence);
+    return benzBuilder.getCarModel() as BenzModel;
+  }
+
+  BenzModel getBBenzModel() {
+    sequence.clear();
+    sequence.addAll(["engine boom", "start", "stop"]);
+    benzBuilder.setSequence(sequence);
+    return benzBuilder.getCarModel() as BenzModel;
+  }
+
+  BMWModel getCBMWModel() {
+    sequence.clear();
+    sequence.addAll(["alarm", "start", "stop"]);
+    bmwBuilder.setSequence(sequence);
+    return bmwBuilder.getCarModel() as BMWModel;
+  }
+
+  BMWModel getDBMWModel() {
+    sequence.clear();
+    sequence.add("start");
+    bmwBuilder.setSequence(sequence);
+    return bmwBuilder.getCarModel() as BMWModel;
+  }
 }
