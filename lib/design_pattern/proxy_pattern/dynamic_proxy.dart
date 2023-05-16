@@ -8,16 +8,4 @@
 /// 其中InvocationHandler是JDK提供的动态代理接口，对被代理类的方法进行代理。
 ///
 
-class GamePlayIH implements InvocationHandler {
-  Object? obj;
 
-  GamePlayIH({this.obj});
-
-  @override
-  dynamic invoke(Object proxy, Invocation invocation) {
-    var method = invocation.memberName;
-    var args = invocation.positionalArguments;
-    var result = Function.apply(obj, [method, ...args]);
-    return result;
-  }
-}
