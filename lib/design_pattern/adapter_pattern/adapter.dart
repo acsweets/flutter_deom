@@ -30,37 +30,142 @@
 ///[里氏替换原则：只要父类能出现的地方子类就可以出现，而且替换为子类也不会产生任何错误或异常，使用者可能根本就不需要知道是父类还是子类。但 是，反过来就不行了，有子类出现的地方，父类未必就能适应]
 ///[迪米特法则的核心观念就是类间解耦，弱耦合，只有弱耦合了以后，类的复用率才可以提高]
 
+abstract class IUserInfo {
+  String getUserName();
 
+  String getHomeAddress();
 
+  String getMobileNumber();
 
+  String getOfficeTelNumber();
 
+  String getJobPosition();
 
+  String getHomeTelNumber();
+}
 
+class UserInfo implements IUserInfo {
+  @override
+  String getHomeAddress() {
+    print("家庭地址");
+    return "null";
+  }
 
+  @override
+  String getHomeTelNumber() {
+    print("电话号码1582566443");
+    return "null";
+  }
 
+  @override
+  String getJobPosition() {
+    print("工作位置");
+    return "null";
+  }
 
+  @override
+  String getMobileNumber() {
+    print("电话号码");
+    return "null";
+  }
 
+  @override
+  String getOfficeTelNumber() {
+    print("°工作号码");
+    return "null";
+  }
 
+  @override
+  String getUserName() {
+    print("名字");
+    return "";
+  }
+}
 
+abstract class IOuterUser {
+  Map getUserBaseInfo();
 
+  Map getUserOfficeInfo();
 
+  Map getUserHomeInfo();
+}
 
+class OuterUser implements IOuterUser {
+  @override
+  Map getUserBaseInfo() {
+    Map baseInfoMap = {};
 
+    baseInfoMap["userName"] = "张三";
+    baseInfoMap["mobileNumber"] = "12753863752";
 
+    return baseInfoMap;
+  }
 
+  @override
+  Map getUserHomeInfo() {
+    Map homeInfo = {};
+    homeInfo["homeTelNumbner"] = "132554245375";
+    homeInfo["homeAddress"] = "天津";
+    return homeInfo;
+  }
 
+  @override
+  Map getUserOfficeInfo() {
+    Map officeInfo = {};
+    officeInfo["jobPosition"] = "北京市";
+    officeInfo["officeTelNumber"] = "0564789523";
+    return officeInfo;
+  }
+}
 
+///适配器适配两种不同的数据格式
+class OuterUserInfo extends OuterUser implements IUserInfo {
+  late final Map baseInfo = super.getUserHomeInfo();
+  late final Map homeInfo = super.getUserHomeInfo();
+  late final Map officeInfo = super.getUserOfficeInfo();
 
+  @override
+  String getHomeAddress() {
+    String homeAddress = homeInfo["homeAddress"];
+    print(homeAddress);
+    return homeAddress;
+  }
 
+  @override
+  String getHomeTelNumber() {
+    String homeTelNumber = homeInfo["homeTelNumber"];
+    print(homeTelNumber);
+    return homeTelNumber;
+  }
 
+  @override
+  String getJobPosition() {
+    String jobPosition = officeInfo["jobPosition"];
+    print(jobPosition);
+    return jobPosition;
+  }
 
+  @override
+  String getMobileNumber() {
+    String mobileNumber = baseInfo["mobileNumber"];
+    print(mobileNumber);
+    return mobileNumber;
+  }
 
+  @override
+  String getOfficeTelNumber() {
+    String officeTelNumber = officeInfo["officeTelNumber"];
+    print(officeTelNumber);
+    return officeTelNumber;
+  }
 
-
-
-
-
-
+  @override
+  String getUserName() {
+    String userName = baseInfo["userName"];
+    print(userName);
+    return userName;
+  }
+}
 
 ///● Target目标角色
 /// 该角色定义把其他类转换为何种接口，也就是我们的期望接口，例子中的IUserInfo接口 就是目标角色。
@@ -70,3 +175,33 @@
 /// 它的职责非常简单：把源角色转换为目标角色，怎么转换？通过继承或是类关联的方式。
 /// 各个角色的职责都已经非常清楚，我们再来看看其通用源码
 /// ====================================================通用模板=========================
+///
+///
+///
+///
+/// 原
+abstract class Target {
+  void request();
+}
+
+class Adaptee {
+  void doSomething() {
+    print("I'm kind of busy,leave me alone,pls!");
+  }
+}
+
+class Adapter extends Adaptee implements Target {
+  @override
+  void request() {
+    super.doSomething();
+  }
+}
+
+class ConcreteTarget implements Target {
+  @override
+  void request() {
+    print("I have nothing to do. if you need any help,pls call me!");
+  }
+}
+
+///适配器模式的扩展
