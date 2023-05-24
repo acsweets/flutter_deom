@@ -5,6 +5,7 @@ import 'package:style/page/home_page.dart';
 import 'package:style/page/providerExample.dart';
 import 'package:provider/provider.dart';
 import 'package:style/page/supermarket_page.dart';
+import 'asyn/isolate_test.dart';
 import 'model/user_model.dart';
 
 void main() {
@@ -19,12 +20,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '开启',
+      title: '示例',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home:  DecoratePage(),
+      home:  IsolatePage(),
     );
    /*   Provider<UserModel>(
         create: (_) => UserModel(),
