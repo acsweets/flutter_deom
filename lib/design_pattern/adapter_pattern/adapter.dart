@@ -205,3 +205,19 @@ class ConcreteTarget implements Target {
 }
 
 ///适配器模式的扩展
+
+abstract class IOuterUserOfficeInfo {
+//¹¤×÷ÇøÓòÐÅÏ¢
+Map getUserOfficeInfo();
+}
+
+abstract class IOuterUserHomeInfo {
+
+Map getUserHomeInfo();
+}
+
+abstract class IOuterUserBaseInfo {
+
+Map getUserBaseInfo();
+
+}

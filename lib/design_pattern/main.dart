@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:style/design_pattern/liskov_substitution_principle/user_info.dart';
 import 'package:style/design_pattern/single_responsibility_principle/abstrac_gun.dart';
 
+import 'composite_pattern/composite.dart';
 import 'dependence_inversion_principle,/depend.dart';
 import 'factory_method_pattern/factory_method.dart';
 import 'interface_segregation_principle/interface_segregation.dart';
@@ -134,6 +135,16 @@ class HomePage extends StatelessWidget {
                     yellowHuman.talk();
                   },
                   child: Text('女娲造人'),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Branch ceo = Client.compositeCorpTree();
+//根节点
+                    print(ceo.getInfo());
+//子节点
+                    print(Client.getTreeInfo(ceo));
+                  },
+                  child: Text('遍历树结构'),
                 ),
               ],
             )
