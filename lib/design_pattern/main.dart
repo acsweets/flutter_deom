@@ -150,9 +150,12 @@ class HomePage extends StatelessWidget {
                   },
                   child: Text('遍历树结构'),
                 ),
-                SizedBox(
-                  width: 10,
-                ),
+
+
+              ],
+            ),
+            Row(
+              children: [
                 GestureDetector(
                   onTap: () {
                     Observer liSi =  LiSi();
@@ -167,7 +170,7 @@ class HomePage extends StatelessWidget {
                   child: Text('观察者模式'),
                 ),
               ],
-            )
+            ),
           ],
         ));
   }
