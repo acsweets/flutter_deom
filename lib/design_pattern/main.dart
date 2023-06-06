@@ -7,6 +7,7 @@ import 'dependence_inversion_principle,/depend.dart';
 import 'factory_method_pattern/factory_method.dart';
 import 'interface_segregation_principle/interface_segregation.dart';
 import 'least_knowledge_principle/least_knowledge.dart';
+import 'observer_pattern/observer.dart';
 
 void main() {
   runApp(MyApp());
@@ -136,6 +137,9 @@ class HomePage extends StatelessWidget {
                   },
                   child: Text('女娲造人'),
                 ),
+                SizedBox(
+                  width: 10,
+                ),
                 GestureDetector(
                   onTap: () {
                     Branch ceo = Client.compositeCorpTree();
@@ -145,6 +149,22 @@ class HomePage extends StatelessWidget {
                     print(Client.getTreeInfo(ceo));
                   },
                   child: Text('遍历树结构'),
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Observer liSi =  LiSi();
+                    Observer wangSi =  WangSi();
+                    Observer liuSi =  LiuSi();
+                    HanFeiZi hanFeiZi =  HanFeiZi();
+                    hanFeiZi.addObserver(liSi);
+                    hanFeiZi.addObserver(wangSi);
+                    hanFeiZi.addObserver(liuSi);
+                    hanFeiZi.haveBreakfast();
+                  },
+                  child: Text('观察者模式'),
                 ),
               ],
             )
