@@ -164,7 +164,6 @@
 // }
 //
 
-
 //  class Client {
 // static void main() {
 //   //首先产生了一个根节点
@@ -202,50 +201,47 @@
 // }
 // }
 
-abstract class  ICorp {
-
- String getInfo();
+abstract class ICorp {
+  String getInfo();
 }
 
-abstract class  IBranch {
+abstract class IBranch {
+  void addSubordinate(ICorp corp);
 
- void addSubordinate(ICorp corp);
-
-List<ICorp> getSubordinate();
-
+  List<ICorp> getSubordinate();
 }
 
-abstract class ILeaf extends ICorp {
+abstract class ILeaf extends ICorp {}
 
-}
- class Leaf implements ILeaf {
- final String name ;
+class Leaf implements ILeaf {
+  final String name;
 
-  final String position ;
+  final String position;
 
- final  int salary;
+  final int salary;
 
- Leaf({this.name="",this.position="",this.salary=0});
+  Leaf({this.name = "", this.position = "", this.salary = 0});
+
   @override
- String getInfo() {
+  String getInfo() {
     String info = "";
     info = "名字：" + name;
-    info = info + "\t职位："+ position;
-    info = info + "\t工资：" +'$salary';
+    info = info + "\t职位：" + position;
+    info = info + "\t工资：" + '$salary';
     return info;
- }
+  }
 }
- class Branch implements IBranch, ICorp {
 
-   final String name ;
+class Branch implements IBranch, ICorp {
+  final String name;
 
-   final String position ;
+  final String position;
 
-   final  int salary;
+  final int salary;
 
-List<ICorp> subordinateList =[];
+  List<ICorp> subordinateList = [];
 
- Branch({this.name="",this.position="",this.salary=0});
+  Branch({this.name = "", this.position = "", this.salary = 0});
 
 //属于添加子节点
   @override
@@ -253,82 +249,157 @@ List<ICorp> subordinateList =[];
     subordinateList.add(corp);
   }
 
- // 得到子节点
-@override
+  // 得到子节点
+  @override
   List<ICorp> getSubordinate() {
     return subordinateList;
   }
 
-String getInfo() {
+  String getInfo() {
     String info = "";
     info = "名字:" + name;
-    info = info + "\t职位:"+ position;
-    info = info + "\t工资:" +'$salary';
+    info = info + "\t职位:" + position;
+    info = info + "\t工资:" + '$salary';
     return info;
   }
-
 }
 
+class Client {
+  static Branch compositeCorpTree() {
+    Branch root = Branch(name: "刘二瘸子", position: "总经理", salary: 10000);
 
- class Client {
- static Branch compositeCorpTree(){
-  Branch root =Branch(name: "刘二瘸子",position: "总经理",salary: 10000);
+    Branch developDep = Branch(name: "刘大瘸子", position: "研发部门经理", salary: 10000);
+    Branch salesDep = Branch(name: "马二拐子", position: "销售部门经理", salary: 20000);
+    Branch financeDep = Branch(name: "赵三驼子", position: "财务部经理", salary: 30000);
 
-  Branch developDep =  Branch(name: "刘大瘸子",position: "研发部门经理",salary: 10000);
-  Branch salesDep = Branch(name: "马二拐子",position: "销售部门经理",salary: 20000);
-  Branch financeDep =  Branch(name: "赵三驼子",position: "财务部经理",salary: 30000);
+    Branch firstDevGroup = Branch(name: "杨三乜斜", position: "开发一组组长", salary: 5000);
+    Branch secondDevGroup = Branch(name: "吴大棒槌", position: "开发二组组长", salary: 6000);
 
-  Branch firstDevGroup =  Branch(name: "杨三乜斜",position: "开发一组组长",salary: 5000);
-  Branch secondDevGroup =  Branch(name: "吴大棒槌",position: "开发二组组长",salary: 6000);
+    Leaf a = Leaf(name: "a", position: "开发人员", salary: 2000);
+    Leaf b = Leaf(name: "b", position: "开发人员", salary: 2000);
+    Leaf c = Leaf(name: "c", position: "开发人员", salary: 2000);
+    Leaf d = Leaf(name: "d", position: "开发人员", salary: 2000);
+    Leaf e = Leaf(name: "e", position: "开发人员", salary: 2000);
+    Leaf f = Leaf(name: "f", position: "开发人员", salary: 2000);
+    Leaf g = Leaf(name: "g", position: "开发人员", salary: 2000);
+    Leaf h = Leaf(name: "h", position: "销售人员", salary: 5000);
+    Leaf i = Leaf(name: "i", position: "销售人员", salary: 4000);
+    Leaf j = Leaf(name: "j", position: "财务人员", salary: 5000);
+    Leaf k = Leaf(name: "k", position: "CEO秘书", salary: 8000);
+    Leaf zhengLaoLiu = Leaf(name: "郑老六", position: "研发部副总", salary: 20000);
 
-  Leaf a =  Leaf(name: "a",position: "开发人员",salary: 2000);
-  Leaf b =  Leaf(name:"b",position:"开发人员",salary: 2000);
-  Leaf c =  Leaf(name:"c",position:"开发人员",salary: 2000);
-  Leaf d =  Leaf(name:"d",position:"开发人员",salary: 2000);
-  Leaf e =  Leaf(name:"e",position:"开发人员",salary: 2000);
-  Leaf f =  Leaf(name:"f",position:"开发人员",salary: 2000);
-  Leaf g =  Leaf(name:"g",position:"开发人员",salary: 2000);
-  Leaf h =  Leaf(name:"h",position:"销售人员",salary: 5000);
-  Leaf i =  Leaf(name:"i",position:"销售人员",salary: 4000);
-  Leaf j =  Leaf(name:"j",position:"财务人员",salary: 5000);
-  Leaf k =  Leaf(name:"k",position:"CEO秘书",salary: 8000);
-  Leaf zhengLaoLiu =  Leaf(name: "郑老六",position: "研发部副总",salary: 20000);
+    root.addSubordinate(k);
+    root.addSubordinate(developDep);
+    root.addSubordinate(salesDep);
+    root.addSubordinate(financeDep);
 
-  root.addSubordinate(k);
-  root.addSubordinate(developDep);
-  root.addSubordinate(salesDep);
-  root.addSubordinate(financeDep);
+    developDep.addSubordinate(zhengLaoLiu);
+    developDep.addSubordinate(firstDevGroup);
+    developDep.addSubordinate(secondDevGroup);
 
-  developDep.addSubordinate(zhengLaoLiu);
-  developDep.addSubordinate(firstDevGroup);
-  developDep.addSubordinate(secondDevGroup);
+    firstDevGroup.addSubordinate(a);
+    firstDevGroup.addSubordinate(b);
+    firstDevGroup.addSubordinate(c);
+    secondDevGroup.addSubordinate(d);
+    secondDevGroup.addSubordinate(e);
+    secondDevGroup.addSubordinate(f);
 
-  firstDevGroup.addSubordinate(a);
-  firstDevGroup.addSubordinate(b);
-  firstDevGroup.addSubordinate(c);
-  secondDevGroup.addSubordinate(d);
-  secondDevGroup.addSubordinate(e);
-  secondDevGroup.addSubordinate(f);
+    salesDep.addSubordinate(h);
+    salesDep.addSubordinate(i);
 
-  salesDep.addSubordinate(h);
-  salesDep.addSubordinate(i);
+    financeDep.addSubordinate(j);
 
-  financeDep.addSubordinate(j);
-
-  return root;
+    return root;
   }
+
   static String getTreeInfo(Branch root) {
-     List<dynamic> subordinateList = root.getSubordinate();
-     String info = "";
-     for (dynamic s in subordinateList) {
-       if (s is Leaf) { // 如果是叶子节点就直接获取信息
-         info = info + s.getInfo() + "\n";
-       } else { // 如果是一个分支节点
-         //递归遍历
-         info = info + s.getInfo() + "\n" + getTreeInfo(s);
-       }
-     }
-     return info;
-   }
+    List<dynamic> subordinateList = root.getSubordinate();
+    String info = "";
+    for (dynamic s in subordinateList) {
+      if (s is Leaf) {
+        // 如果是叶子节点就直接获取信息
+        info = info + s.getInfo() + "\n";
+      } else {
+        // 如果是一个分支节点
+        //递归遍历
+        info = info + s.getInfo() + "\n" + getTreeInfo(s);
+      }
+    }
+    return info;
+  }
 }
+
+///通用模板
+///
+
+abstract class Corp {
+  final String name;
+
+  final String position;
+
+  final int salary;
+
+  List<Corp> subordinateList = [];
+
+  Corp({this.name = "", this.position = "", this.salary = 0});
+
+  String getInfo() {
+    String info = "";
+    info = "名字:" + name;
+    info = info + "\t职位:" + position;
+    info = info + "\t工资:" + '$salary';
+    return info;
+  }
+}
+//叶子
+class Lea extends Corp {
+  Lea(String _name, String _position, int _salary)
+      : super(
+          name: _name,
+          position: _position,
+          salary: _salary,
+        );
+}
+
+//结点
+ class Branc extends Corp {
+
+    @override
+     List<Corp> subordinateList = [];
+
+    Branc(String _name, String _position, int _salary)
+        : super(
+      name: _name,
+      position: _position,
+      salary: _salary,
+    );
+
+
+    void addSubordinate(Corp corp) {
+      subordinateList.add(corp);
+    }
+
+    List<Corp> getSubordinate() {
+      return subordinateList;
+    }
+  }
+
+///场景类实现子节点的添加以及遍历
+//static Branch compositeCorpTree()
+//static String getTreeInfo(Branch root) {
+//     List<dynamic> subordinateList = root.getSubordinate();
+//     String info = "";
+//     for (dynamic s in subordinateList) {
+//       if (s is Leaf) {
+//         // 如果是叶子节点就直接获取信息
+//         info = info + s.getInfo() + "\n";
+//       } else {
+//         // 如果是一个分支节点
+//         //递归遍历
+//         info = info + s.getInfo() + "\n" + getTreeInfo(s);
+//       }
+//     }
+//     return info;
+//   }
+
 
