@@ -9,6 +9,7 @@ import 'factory_method_pattern/factory_method.dart';
 import 'interface_segregation_principle/interface_segregation.dart';
 import 'least_knowledge_principle/least_knowledge.dart';
 import 'memento_pattern/memento.dart';
+import 'method.dart';
 import 'observer_pattern/observer.dart';
 
 void main() {
@@ -182,8 +183,6 @@ class HomePage extends StatelessWidget {
                   },
                   child: Text('邮局寄信'),
                 ),
-
-
                 SizedBox(width: 10),
                 GestureDetector(
                   onTap: () {
@@ -205,6 +204,11 @@ class HomePage extends StatelessWidget {
                     print(boy.getState());
                   },
                   child: Text('备忘录模式追女孩'),
+                ),
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: Method.readMember,
+                  child: Text('看报表咯'),
                 ),
               ],
             ),
