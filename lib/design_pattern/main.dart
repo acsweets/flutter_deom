@@ -8,6 +8,7 @@ import 'facade_pattern/facade.dart';
 import 'factory_method_pattern/factory_method.dart';
 import 'interface_segregation_principle/interface_segregation.dart';
 import 'least_knowledge_principle/least_knowledge.dart';
+import 'memento_pattern/memento.dart';
 import 'observer_pattern/observer.dart';
 
 void main() {
@@ -180,6 +181,30 @@ class HomePage extends StatelessWidget {
                     hellRoadPostOffice.sendLetter(context, address);
                   },
                   child: Text('邮局寄信'),
+                ),
+
+
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () {
+                    Boy boy =  Boy();
+                    Caretaker caretaker =  Caretaker();
+                    boy.setState("心情很棒！");
+                    print("=====男孩现在的状态¬======");
+                    print(boy.getState());
+                    //需要记录下当前状态呀,
+                   // 创建备忘录
+                    caretaker.setMemento(boy.createMemento());
+                    //男孩去追女孩，状态改变
+                    boy.changeState();
+                    print("\n=====男孩追女孩子后的状态=¬======");
+                    print(boy.getState());
+                    //追女孩失败，恢复原状 ,,读取备忘录
+                    boy.restoreMemento(caretaker.getMemento());
+                    print("\n=====男孩恢复后的状态=======");
+                    print(boy.getState());
+                  },
+                  child: Text('备忘录模式追女孩'),
                 ),
               ],
             ),
