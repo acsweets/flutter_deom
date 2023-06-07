@@ -4,6 +4,7 @@ import 'package:style/design_pattern/single_responsibility_principle/abstrac_gun
 
 import 'composite_pattern/composite.dart';
 import 'dependence_inversion_principle,/depend.dart';
+import 'facade_pattern/facade.dart';
 import 'factory_method_pattern/factory_method.dart';
 import 'interface_segregation_principle/interface_segregation.dart';
 import 'least_knowledge_principle/least_knowledge.dart';
@@ -168,6 +169,17 @@ class HomePage extends StatelessWidget {
                     hanFeiZi.haveBreakfast();
                   },
                   child: Text('观察者模式'),
+                ),
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: () {
+                    //只用传内容和地址就能完成寄信的功能
+                    ModenPostOffice hellRoadPostOffice = new ModenPostOffice();
+                    String address = "Happy Road No. 666,God Province,Heaven";
+                    String context = "Hello,It's me,do you know who I am? I'm your old lover. I'd like to....";
+                    hellRoadPostOffice.sendLetter(context, address);
+                  },
+                  child: Text('邮局寄信'),
                 ),
               ],
             ),
