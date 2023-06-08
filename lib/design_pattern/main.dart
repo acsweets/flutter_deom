@@ -210,8 +210,17 @@ class HomePage extends StatelessWidget {
                   onTap: Method.readMember,
                   child: Text('看报表咯'),
                 ),
+
               ],
             ),
+            Row(
+              children: [
+                GestureDetector(
+                  onTap: Method.runElevator,
+                  child: Text('电梯状态'),
+                ),
+              ],
+            )
           ],
         ));
   }

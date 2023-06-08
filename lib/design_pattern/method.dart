@@ -1,3 +1,4 @@
+import 'package:style/design_pattern/state_pattern/state.dart';
 import 'package:style/design_pattern/visitor_pattern/visitor.dart';
 
 class Method{
@@ -69,4 +70,13 @@ class Method{
     print("总薪水"+"${visitor.getTotalSalary()}");
   }
 
+  static void runElevator(){
+    Context context =  Context();
+    context.setLiftState( ClosingState());
+    context.open();
+    context.close();
+    context.run();
+    context.stop();
+    context.open();
+  }
 }
