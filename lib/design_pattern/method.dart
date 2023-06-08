@@ -1,6 +1,8 @@
 import 'package:style/design_pattern/state_pattern/state.dart';
 import 'package:style/design_pattern/visitor_pattern/visitor.dart';
 
+import 'interpreter_pattern/interpreter.dart';
+
 class Method{
 
 
@@ -78,5 +80,28 @@ class Method{
     context.run();
     context.stop();
     context.open();
+  }
+
+
+
+  static void calculator() {
+    String expStr = "a+b+c";
+    Map<String, int> map = getValue();
+    Calculator cal = Calculator(expStr);
+    print( expStr + "=" + "${cal.run(map)}"+" ${ getValue()}");
+  }
+
+  static String getExpStr() {
+    print("a+b+c");
+    return "1+2+3";
+  }
+
+  static Map<String, int> getValue() {
+    Map<String, int> map = {};
+    ///
+    map["a"] = 2;
+    map["b"] = 3;
+    map["c"] = 4;
+    return map;
   }
 }

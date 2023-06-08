@@ -219,6 +219,11 @@ class HomePage extends StatelessWidget {
                   onTap: Method.runElevator,
                   child: Text('电梯状态'),
                 ),
+                SizedBox(width: 10),
+                GestureDetector(
+                  onTap: Method.calculator,
+                  child: Text('解释器'),
+                ),
               ],
             )
           ],
